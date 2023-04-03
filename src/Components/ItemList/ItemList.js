@@ -7,6 +7,7 @@ import { Loader } from '../Loader/Loader'
 
 import uuid from 'react-uuid'
 import './ItemList.scss'
+import { all } from 'axios'
 
 export const ItemList = () => {
   const {
@@ -22,13 +23,9 @@ export const ItemList = () => {
   const [searchIndex, setSearchindex] = useState(0)
 
   useEffect(() => {
-    paramsForRequest()
-  }, [searchBooks, sort])
-
-  function paramsForRequest() {
     const newObjForSearch = { searchBooks, sort, searchIndex }
     dispatch(fetchBooks(newObjForSearch))
-  }
+  }, [searchBooks, sort])
 
   function toggleCategory(arr) {
     return arr.filter((item) => {
