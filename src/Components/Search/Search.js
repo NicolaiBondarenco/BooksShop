@@ -11,6 +11,7 @@ export const Search = () => {
 
   const onHandleClick = (e) => {
     e.preventDefault()
+    if (nameBooks === '') return
     dispatch(onChangeSearchBooks(nameBooks))
     navigate('/')
   }
