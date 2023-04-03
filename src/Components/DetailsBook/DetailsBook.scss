@@ -1,0 +1,56 @@
+.detailsBook {
+  &__wrapper {
+    display: flex;
+    @media (max-width: 640px) {
+      display: block;
+    }
+  }
+  &__img {
+    max-height: 500px;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    @media (max-width: 640px) {
+      width: 100%;
+      padding: 0;
+      margin: 20px 0;
+    }
+    img {
+      height: 300px;
+      max-width: 300px;
+    }
+  }
+  &__info {
+    width: 60%;
+    padding: 25px;
+    @media (max-width: 640px) {
+      width: 100%;
+      padding: 0;
+    }
+    &-category {
+      margin-bottom: 20px;
+    }
+    &-title {
+      margin-bottom: 20px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    &-author {
+      margin-bottom: 20px;
+    }
+  }
+  &__back {
+    display: flex;
+    justify-content: center;
+    &-btn {
+      border-radius: 10px;
+      color: azure;
+      background-color: #2a2a2a;
+      padding: 10px 50px;
+      box-shadow: 5px 3px 18px 4px rgba(34, 60, 80, 0.2);
+      cursor: pointer;
+    }
+  }
+}

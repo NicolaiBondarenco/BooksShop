@@ -1,0 +1,28 @@
+.search {
+  input {
+    padding: 10px;
+    margin-right: 5px;
+    font-size: 18px;
+  }
+  button {
+    font-size: 18px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 450px) {
+  .search {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 35px;
+    input {
+      margin-right: 0;
+      margin-bottom: 5px;
+    }
+    button {
+      display: block;
+      margin: 0 auto;
+      width: 80px;
+    }
+  }
+}
