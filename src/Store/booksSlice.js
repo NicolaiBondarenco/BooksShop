@@ -65,6 +65,10 @@ export const booksSlice = createSlice({
       state.status = null
       state.allBooks = state.allBooks.concat(action.payload.items)
     })
+    builder.addCase(loadMoreBooks.rejected, (state) => {
+      state.status = null
+      state.error = true
+    })
   },
 })
 
