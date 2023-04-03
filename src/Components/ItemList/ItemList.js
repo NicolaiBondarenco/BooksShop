@@ -7,7 +7,6 @@ import { Loader } from '../Loader/Loader'
 
 import uuid from 'react-uuid'
 import './ItemList.scss'
-import { all } from 'axios'
 
 export const ItemList = () => {
   const {
