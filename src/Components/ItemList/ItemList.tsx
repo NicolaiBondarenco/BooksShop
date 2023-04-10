@@ -7,6 +7,7 @@ import { Loader } from '../Loader/Loader'
 
 import uuid from 'react-uuid'
 import './ItemList.scss'
+import { RootState, AppDispatch } from '../../Store'
 
 export const ItemList = () => {
   const {
@@ -17,18 +18,18 @@ export const ItemList = () => {
     category,
     status,
     error,
-  } = useSelector((state) => state.books)
-  const dispatch = useDispatch()
+  } = useSelector((state: RootState) => state.books)
+  const dispatch = useDispatch<AppDispatch>()
   const [searchIndex, setSearchindex] = useState(0)
-  console.log(allBooks[0])
+  console.log(allBooks)
 
   useEffect(() => {
     const newObjForSearch = { searchBooks, sort, searchIndex }
     dispatch(fetchBooks(newObjForSearch))
   }, [searchBooks, sort])
 
-  function toggleCategory(arr) {
-    return arr.filter((item) => {
+  function toggleCategory(arr: any) {
+    return arr.filter((item: any) => {
       if (item.volumeInfo.categories !== undefined) {
         if (category === 'all') return item
         if (
@@ -48,7 +49,7 @@ export const ItemList = () => {
         <p>Found {totalItems} results</p>
       </div>
       <div className="itemList__inner">
-        {toggleCategory(allBooks).map((item) => {
+        {toggleCategory(allBooks).map((item: any) => {
           const path = item.volumeInfo
           const thumbnail = path.imageLinks && path.imageLinks.smallThumbnail
           return (
