@@ -1,7 +1,7 @@
 import React from 'react'
 import './Error.scss'
 
-export const Error = () => {
+export const Error: React.FC = () => {
   return (
     <div className="error">
       <img

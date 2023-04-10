@@ -1,9 +1,10 @@
+import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { DetailsBook } from './Components/DetailsBook/DetailsBook'
 import { Header } from './Components/Header/Header'
 import { ItemList } from './Components/ItemList/ItemList'
 
-export const App = () => {
+export const App: React.FC = () => {
   return (
     <div>
       <Header />

@@ -1,7 +1,19 @@
 import React from 'react'
 import './MultiplySort.scss'
 
-export const MultiplySort = ({ data, title, idHtml, onChangeValue }) => {
+interface IProps {
+  data: { name: string; value: string; id: number }[]
+  title: string
+  idHtml: string
+  onChangeValue: (value: string) => void
+}
+
+export const MultiplySort: React.FC<IProps> = ({
+  data,
+  title,
+  idHtml,
+  onChangeValue,
+}) => {
   return (
     <div className="multiplySort">
       <label htmlFor={idHtml}>{title}: </label>

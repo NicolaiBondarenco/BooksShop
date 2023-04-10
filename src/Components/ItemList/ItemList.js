@@ -20,6 +20,7 @@ export const ItemList = () => {
   } = useSelector((state) => state.books)
   const dispatch = useDispatch()
   const [searchIndex, setSearchindex] = useState(0)
+  console.log(allBooks[0])
 
   useEffect(() => {
     const newObjForSearch = { searchBooks, sort, searchIndex }
@@ -28,7 +29,7 @@ export const ItemList = () => {
 
   function toggleCategory(arr) {
     return arr.filter((item) => {
-      if (item.volumeInfo.categories != undefined) {
+      if (item.volumeInfo.categories !== undefined) {
         if (category === 'all') return item
         if (
           item.volumeInfo.categories[0].toLowerCase() === category.toLowerCase()
@@ -56,7 +57,7 @@ export const ItemList = () => {
               title={path.title}
               categories={path.categories}
               desc={path.description}
-              img={thumbnail}
+              image={thumbnail}
               author={path.authors}
               id={item.id}
             />

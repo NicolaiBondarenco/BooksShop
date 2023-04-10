@@ -21,13 +21,13 @@ const sortArr = [
   { name: 'Newest', value: 'newest', id: 2 },
 ]
 
-export const Header = () => {
+export const Header: React.FC = () => {
   const dispatch = useDispatch()
 
-  const onHandleCategory = (value) => {
+  const onHandleCategory = (value: string) => {
     dispatch(onChangeCategory(value))
   }
-  const onHandleSort = (value) => {
+  const onHandleSort = (value: string) => {
     dispatch(onChangeSort(value))
   }
 

@@ -1,9 +1,32 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
+export interface FetchBooksParams {
+  searchBooks: string
+  sort: string
+  searchIndex?: number
+}
+
+interface IInitialState {
+  allBooks: []
+  status: 'loading' | 'seccess' | 'error'
+  error: boolean
+  totalItems: number
+  searchIndex: number
+  searchBooks: string
+  sort: string
+  category: string
+}
+
+enum Status {
+  LOADING = 'loading',
+  SECCESS = 'seccess',
+  ERROR = 'error',
+}
+
 export const fetchBooks = createAsyncThunk(
   'books/fetchBooks',
-  async (newObj) => {
+  async (newObj: FetchBooksParams) => {
     const { searchBooks, sort } = newObj
     const res = await axios.get(
       `https://www.googleapis.com/books/v1/volumes?q=${searchBooks}&orderBy=${sort}&startIndex=0&maxResults=30&&key=AIzaSyC9gvAO9TMq5jn9NaEk0JZGdanIVn7XrLE`,
@@ -14,7 +37,7 @@ export const fetchBooks = createAsyncThunk(
 
 export const loadMoreBooks = createAsyncThunk(
   'books/loadMoreBooks',
-  async (newObj) => {
+  async (newObj: FetchBooksParams) => {
     const { searchBooks, sort, searchIndex } = newObj
     const res = await axios.get(
       `https://www.googleapis.com/books/v1/volumes?q=${searchBooks}&orderBy=${sort}&startIndex=${searchIndex}&maxResults=30&&key=AIzaSyC9gvAO9TMq5jn9NaEk0JZGdanIVn7XrLE`,
@@ -23,11 +46,11 @@ export const loadMoreBooks = createAsyncThunk(
   },
 )
 
-const initialState = {
+const initialState: IInitialState = {
   allBooks: [],
-  status: null,
+  status: Status.LOADING,
   error: false,
-  totalItems: null,
+  totalItems: 0,
   searchIndex: 0,
   searchBooks: 'JavaScript',
   sort: 'relevance',
@@ -53,20 +76,21 @@ export const booksSlice = createSlice({
       state.status = 'loading'
     })
     builder.addCase(fetchBooks.fulfilled, (state, action) => {
-      state.status = null
+      state.status = Status.SECCESS
       state.allBooks = action.payload.items
       state.totalItems = action.payload.totalItems
     })
     builder.addCase(fetchBooks.rejected, (state) => {
-      state.status = null
+      state.status = Status.ERROR
       state.error = true
     })
     builder.addCase(loadMoreBooks.fulfilled, (state, action) => {
-      state.status = null
-      state.allBooks = state.allBooks.concat(action.payload.items)
+      state.status = Status.SECCESS
+      // @ts-ignore
+      state.allBooks = [...state.allBooks, ...action.payload.items]
     })
     builder.addCase(loadMoreBooks.rejected, (state) => {
-      state.status = null
+      state.status = Status.ERROR
       state.error = true
     })
   },
