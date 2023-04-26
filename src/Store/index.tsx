@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import books from './booksSlice'
+import user from './userSlice'
 import { useDispatch } from 'react-redux'
 
 export const store = configureStore({
   reducer: {
     books,
+    user,
   },
 })
 

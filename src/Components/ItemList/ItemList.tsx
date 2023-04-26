@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { loadMoreBooks, fetchBooks } from '../../Store/booksSlice'
+import { RootState, AppDispatch } from '../../Store'
 import { Item } from '../Item/Item'
 import { Error } from '../Error/Error'
 import { Loader } from '../Loader/Loader'
 
+import { IDataObj } from '../../../Types'
+
 import uuid from 'react-uuid'
 import './ItemList.scss'
-import { RootState, AppDispatch } from '../../Store'
 
 export const ItemList = () => {
   const {
@@ -21,7 +23,6 @@ export const ItemList = () => {
   } = useSelector((state: RootState) => state.books)
   const dispatch = useDispatch<AppDispatch>()
   const [searchIndex, setSearchindex] = useState(0)
-  console.log(allBooks)
 
   useEffect(() => {
     const newObjForSearch = { searchBooks, sort, searchIndex }
@@ -29,7 +30,7 @@ export const ItemList = () => {
   }, [searchBooks, sort])
 
   function toggleCategory(arr: any) {
-    return arr.filter((item: any) => {
+    return arr.filter((item: IDataObj) => {
       if (item.volumeInfo.categories !== undefined) {
         if (category === 'all') return item
         if (
@@ -49,7 +50,7 @@ export const ItemList = () => {
         <p>Found {totalItems} results</p>
       </div>
       <div className="itemList__inner">
-        {toggleCategory(allBooks).map((item: any) => {
+        {toggleCategory(allBooks).map((item: IDataObj) => {
           const path = item.volumeInfo
           const thumbnail = path.imageLinks && path.imageLinks.smallThumbnail
           return (

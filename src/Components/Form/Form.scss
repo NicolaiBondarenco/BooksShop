@@ -1,0 +1,60 @@
+.formUser {
+  margin: 150px auto 0;
+  max-width: 400px;
+  min-height: 500px;
+  background: rgb(6, 157, 247);
+  background: linear-gradient(
+    20deg,
+    rgba(6, 157, 247, 1) 22%,
+    rgba(198, 128, 200, 1) 60%
+  );
+  padding: 40px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  &__top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &-image {
+      width: 70px;
+      height: 70px;
+      background-color: #fff;
+      border-radius: 50%;
+    }
+    &-title {
+      margin-top: 20px;
+      color: #fff;
+      font-weight: normal;
+    }
+  }
+  &__middle {
+    display: flex;
+    flex-direction: column;
+    &-email,
+    &-pass,
+    &-remember {
+      margin-bottom: 20px;
+      & > label {
+        color: #fff;
+      }
+    }
+    &-btn {
+      font-size: 14px;
+      padding: 10px 0;
+      border-radius: 50px;
+      width: 80px;
+      background-color: #fff;
+      border: none;
+      align-self: center;
+    }
+  }
+  &__redirect {
+    text-align: center;
+  }
+  &__forgotLink {
+    display: block;
+    text-align: center;
+  }
+}

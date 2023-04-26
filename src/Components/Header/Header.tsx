@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { onChangeCategory, onChangeSort } from '../../Store/booksSlice'
 import { MultiplySort } from '../MultiplySort/MultiplySort'
 import { Search } from '../Search/Search'
+import { useAuth } from '../../Hooks/useAuth'
 import './Header.scss'
 
 const categoryArr = [
@@ -22,6 +23,7 @@ const sortArr = [
 ]
 
 export const Header: React.FC = () => {
+  const { isAuth } = useAuth()
   const dispatch = useDispatch()
 
   const onHandleCategory = (value: string) => {
@@ -31,7 +33,7 @@ export const Header: React.FC = () => {
     dispatch(onChangeSort(value))
   }
 
-  return (
+  return isAuth ? (
     <div className="header">
       <h1>Search for books</h1>
       <Search />
@@ -50,5 +52,5 @@ export const Header: React.FC = () => {
         />
       </div>
     </div>
-  )
+  ) : null
 }
