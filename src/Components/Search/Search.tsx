@@ -7,13 +7,11 @@ import { useNavigate } from 'react-router-dom'
 export const Search: React.FC = () => {
   const [nameBooks, setNameBooks] = useState('')
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   const onHandleClick = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
     if (nameBooks === '') return
     dispatch(onChangeSearchBooks(nameBooks))
-    navigate('/')
   }
 
   return (

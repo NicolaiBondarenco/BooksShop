@@ -1,0 +1,10 @@
+.share {
+  position: sticky;
+  bottom: 40px;
+  max-width: 300px;
+  float: right;
+  margin-right: 40px;
+  &__btn {
+    margin-left: 20px;
+  }
+}

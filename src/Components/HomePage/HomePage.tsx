@@ -1,9 +1,10 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { RootState } from '../../Store'
 
 export const HomePage = () => {
-  const { email } = useSelector((state) => state.user)
+  const { email } = useSelector((state: RootState) => state.user)
   return (
     <div>
       <p>

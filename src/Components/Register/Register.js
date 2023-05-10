@@ -30,7 +30,7 @@ export const Register = () => {
     <Form
       subtitle="Register"
       redirectText="Log In"
-      redirectLink="/login"
+      redirectLink="/"
       title="REGISTRATION"
       text="Already have an account?"
       formHandleClick={handleRegistre}

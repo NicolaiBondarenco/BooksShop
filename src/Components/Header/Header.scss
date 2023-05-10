@@ -15,6 +15,13 @@
     text-align: center;
     color: aliceblue;
   }
+  &__btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    border-radius: 5px;
+    border: 0;
+  }
   &__inner {
     display: flex;
     justify-content: center;

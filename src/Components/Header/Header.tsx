@@ -4,6 +4,7 @@ import { onChangeCategory, onChangeSort } from '../../Store/booksSlice'
 import { MultiplySort } from '../MultiplySort/MultiplySort'
 import { Search } from '../Search/Search'
 import { useAuth } from '../../Hooks/useAuth'
+import { useNavigate } from 'react-router-dom'
 import './Header.scss'
 
 const categoryArr = [
@@ -24,6 +25,11 @@ const sortArr = [
 
 export const Header: React.FC = () => {
   const { isAuth } = useAuth()
+  const navigate = useNavigate()
+  const userPresence = localStorage
+    .getItem('userName')
+    ?.split('@')[0]
+    .substring(1)
   const dispatch = useDispatch()
 
   const onHandleCategory = (value: string) => {
@@ -33,9 +39,17 @@ export const Header: React.FC = () => {
     dispatch(onChangeSort(value))
   }
 
-  return isAuth ? (
+  const logOut = () => {
+    localStorage.removeItem('userName')
+    navigate('/')
+  }
+
+  return isAuth || userPresence ? (
     <div className="header">
       <h1>Search for books</h1>
+      <button className="header__btn" onClick={logOut}>
+        Log Out {userPresence}
+      </button>
       <Search />
       <div className="header__inner">
         <MultiplySort

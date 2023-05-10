@@ -11,6 +11,7 @@ export const Login = () => {
     const auth = getAuth()
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
+        localStorage.setItem('userName', JSON.stringify(user.email))
         dispatch(
           setUser({
             email: user.email,

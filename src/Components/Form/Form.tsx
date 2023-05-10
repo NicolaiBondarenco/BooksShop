@@ -3,7 +3,16 @@ import { Link } from 'react-router-dom'
 import './Form.scss'
 const logo = require('../../assets/image/logo_form.png')
 
-export const Form = ({
+interface IForm {
+  formHandleClick: string
+  title: string
+  redirectLink: string
+  text: string
+  redirectText: string
+  subtitle: string
+}
+
+export const Form: React.FC<IForm> = ({
   formHandleClick,
   title,
   redirectLink,
@@ -25,6 +34,7 @@ export const Form = ({
         className="formUser__middle"
         onSubmit={(e) => {
           e.preventDefault()
+          // @ts-ignore
           formHandleClick(email, pass)
         }}
       >

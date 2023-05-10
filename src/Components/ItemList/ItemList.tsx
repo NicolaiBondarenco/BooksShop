@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { loadMoreBooks, fetchBooks } from '../../Store/booksSlice'
 import { RootState, AppDispatch } from '../../Store'
@@ -10,8 +10,9 @@ import { IDataObj } from '../../../Types'
 
 import uuid from 'react-uuid'
 import './ItemList.scss'
+import { Share } from '../Share/Share'
 
-export const ItemList = () => {
+export const ItemList: React.FC = () => {
   const {
     allBooks,
     totalItems,
@@ -23,6 +24,7 @@ export const ItemList = () => {
   } = useSelector((state: RootState) => state.books)
   const dispatch = useDispatch<AppDispatch>()
   const [searchIndex, setSearchindex] = useState(0)
+  const isUser = localStorage.getItem('userName')
 
   useEffect(() => {
     const newObjForSearch = { searchBooks, sort, searchIndex }
@@ -44,7 +46,7 @@ export const ItemList = () => {
   if (error) return <Error />
   if (status === 'loading') return <Loader />
 
-  return (
+  return isUser ? (
     <div className="itemList">
       <div className="itemList__count">
         <p>Found {totalItems} results</p>
@@ -77,6 +79,7 @@ export const ItemList = () => {
           Load more...
         </button>
       </div>
+      <Share />
     </div>
-  )
+  ) : null
 }

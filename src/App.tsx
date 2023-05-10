@@ -9,15 +9,17 @@ import { Login } from './Components/Login/Login'
 export const App: React.FC = () => {
   const navigate = useNavigate()
   useEffect(() => {
-    navigate('/register')
+    const userPresence = localStorage.getItem('userName')
+    if (userPresence) return navigate('/allBooks')
+    navigate('/')
   }, [])
 
   return (
     <div>
       <Header />
       <Routes>
+        <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/allBooks" element={<ItemList />} />
         <Route path="/detailsBook/:id" element={<DetailsBook />} />
       </Routes>

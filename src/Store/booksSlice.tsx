@@ -29,7 +29,7 @@ export const fetchBooks = createAsyncThunk(
   async (newObj: FetchBooksParams) => {
     const { searchBooks, sort } = newObj
     const res = await axios.get(
-      `https://www.googleapis.com/books/v1/volumes?q=${searchBooks}&orderBy=${sort}&startIndex=0&maxResults=30&&key=AIzaSyC9gvAO9TMq5jn9NaEk0JZGdanIVn7XrLE`,
+      `https://www.googleapis.com/books/v1/volumes?q=${searchBooks}&orderBy=${sort}&startIndex=0&maxResults=12&&key=AIzaSyC9gvAO9TMq5jn9NaEk0JZGdanIVn7XrLE`,
     )
     return res.data
   },
@@ -40,7 +40,7 @@ export const loadMoreBooks = createAsyncThunk(
   async (newObj: FetchBooksParams) => {
     const { searchBooks, sort, searchIndex } = newObj
     const res = await axios.get(
-      `https://www.googleapis.com/books/v1/volumes?q=${searchBooks}&orderBy=${sort}&startIndex=${searchIndex}&maxResults=30&&key=AIzaSyC9gvAO9TMq5jn9NaEk0JZGdanIVn7XrLE`,
+      `https://www.googleapis.com/books/v1/volumes?q=${searchBooks}&orderBy=${sort}&startIndex=${searchIndex}&maxResults=12&&key=AIzaSyC9gvAO9TMq5jn9NaEk0JZGdanIVn7XrLE`,
     )
     return res.data
   },

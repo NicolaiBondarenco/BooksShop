@@ -29,7 +29,7 @@ export const DetailsBook = () => {
         </div>
       </div>
       <div className="detailsBook__back">
-        <Link to="/">
+        <Link to="/allBooks">
           <button className="detailsBook__back-btn">Back</button>
         </Link>
       </div>
